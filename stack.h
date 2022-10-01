@@ -21,7 +21,6 @@ public:
   void pop(T &delval);
   void pop();
   T peek();
-
 };
 //===============================================//
 template <typename T>

@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "ArgumentManager.h"
 #include "stack.h"
 //=======================================================================//
@@ -43,14 +44,19 @@ int main(int argc, char *argv[]) {
         }
 
         string decodedID = decodeFunc(line);
-        if (b1)
-        {
-            //insert to LL
-        }
-        else if (b2)
-        {
-            //insert to LL
-        }
+        
+
+    //DISCARD
+        // if (b1)
+        // {
+        //     //insert to LL
+        //     cout << "b1 " << decodedID << endl;
+        // }
+        // else if (b2)
+        // {
+        //     //insert to LL
+        //     cout << "b2 " << decodedID << endl;
+        // }
 
 
 
@@ -74,24 +80,35 @@ int main(int argc, char *argv[]) {
 //=======================================================================//
 string decodeFunc(string encodedID)
 {
-    // STACK NEEDED FOR REVERSAL
-    //cout << encodedID << endl;
-    
+// STACK FOR REVERSAL
     Stack<int> mystack;
 
     for(int i=0; i<encodedID.size(); i++)
     {
-        // push index of cur '('
+        // Push index of cur '('
         if (encodedID[i] == '(')
             mystack.push(i);
+
+        // Reverse substring until ')'
+        else if (encodedID[i] == ')')
+        {
+            // Using reverse function from <algorithm> stl 
+            reverse(encodedID.begin() + mystack.peek() + 1, encodedID.begin() + i);
+            mystack.pop();
+        }
     }
 
-    //Reverse substring starting two corners
+// Store modified strings
+    string res = "";
+    for(int i=0; i<encodedID.size(); i++)
+    {
+        if (encodedID[i] != ')' && encodedID[i] != '(')
+            res += (encodedID[i]);
+    }
 
-
-
-
-    return "";
+// Print debugger
+    //cout << res << endl;
+    return res;
 
 }
 //=======================================================================//
