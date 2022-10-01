@@ -15,6 +15,7 @@ private:
     LLnode* head;
     void appendPrivate(LLnode* newnode, LLnode* cur);
     void printPrivate(LLnode* cur);
+    void outputPrivate(ofstream& outFS, LLnode* cur); //FIXME
 
 public:
     //CONSTRUCTORS
@@ -27,6 +28,7 @@ public:
 
     //PRINTS
     void print();
+    void output(ofstream& outFS); //FIXME
     
 
 };
@@ -70,6 +72,11 @@ void LinkedList::printPrivate(LLnode* cur)
     cout << cur->data << endl;
     printPrivate(cur->next);
 }
+//======================================================//
+//======================================================//
+//======================================================//
+//======================================================//
+//======================================================//
 //======================================================//
 //======================================================//
 //======================================================//
