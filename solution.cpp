@@ -76,17 +76,17 @@ string decodeFunc(string encodedID)
 {
     // STACK NEEDED FOR REVERSAL
     //cout << encodedID << endl;
-
-    string res = "";
+    
+    Stack<int> mystack;
 
     for(int i=0; i<encodedID.size(); i++)
     {
-        if (encodedID[i] != '(')
-        {
-            res += encodedID[i];
-        }
+        // push index of cur '('
+        if (encodedID[i] == '(')
+            mystack.push(i);
     }
 
+    //Reverse substring starting two corners
 
 
 

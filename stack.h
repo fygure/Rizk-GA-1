@@ -1,71 +1,80 @@
 #ifndef STACK_H
 #define STACK_H
+
 //===============================================//
-#include <iostream>
-#include <string>
-using namespace std;
-//===============================================//
-struct stackNode {
-    string data;
-    stackNode* next;
+template <typename T>
+struct node {
+  T data;
+  node* next;
 };
 //===============================================//
-class Stack
-{
+template <typename T>
+class Stack {
+
 private:
-    stackNode* top;
+  node<T>* top;
 
 public:
-    Stack() { top == nullptr; }
-    bool isEmpty() { return (top == nullptr); }
-    void push(string _data);
-    void pop(string &delval);
-    void pop();
-    string peek();
+  Stack() {top = nullptr;}
+  bool isEmpty() {return (top == nullptr);}
+  void push(T data);
+  void pop(T &delval);
+  void pop();
+  T peek();
+
 };
 //===============================================//
-void Stack::push(string _data)
+template <typename T>
+void Stack<T>::push(T data)
 {
-    stackNode* newnode = new stackNode();
-    newnode->data = _data;
-    newnode->next = nullptr;
-    if (isEmpty())
-        top = newnode;
-    else
-    {
-        newnode->next = top;
-        top = newnode;
-    }
+  node<T>* newnode = new node<T>;
+  newnode->data = data;
+  newnode->next = nullptr;
+  if (isEmpty())
+  {
+    top = newnode;
+  }
+  else
+  {
+    newnode->next = top;
+    top = newnode;
+  }
+  
 }
 //===============================================//
-void Stack::pop(string &delval)
+template <typename T>
+void Stack<T>::pop(T &delval)
 {
-    if (isEmpty())
-        return;
-    else
-    {
-        stackNode* delnode = top;
-        string popval = top->data;
-        top = top->next;
-        delete delnode;
-    }
+  if (isEmpty())
+    return;
+  else
+  {
+    node<T>* delnode = top;
+    T popval = top->data;
+    top = top->next;
+    delete delnode;
+  }
+  
 }
 //===============================================//
-void Stack::pop()
+template <typename T>
+void Stack<T>::pop()
 {
-    if (isEmpty())
-        return;
-    else
-    {
-        stackNode* delnode = top;
-        top = top->next;
-        delete delnode;
-    }
+  if (isEmpty())
+    return;
+  else
+  {
+    node<T>* delnode = top;
+    top = top->next;
+    delete delnode;
+  }
+  
 }
 //===============================================//
-string Stack::peek()
+template <typename T>
+T Stack<T>::peek()
 {
-    return top->data;
+  return top->data;
 }
 //===============================================//
 
