@@ -8,6 +8,7 @@
 #include <algorithm>
 #include "ArgumentManager.h"
 #include "stack.h"
+#include "linkedlist.h"
 //=======================================================================//
 using namespace std;
 //=======================================================================//
@@ -28,49 +29,29 @@ int main(int argc, char *argv[]) {
 //Receive inputs
     ifstream inFS("input11.txt");
     string line;
-
-    bool b1, b2;
+    vector<string> tempVector;
+    LinkedList myList;
 
     while (inFS >> line) {
         if (line == "Bar1") {
-            b1 = true;
-            b2 = false;
             continue;
         }
         else if (line == "Bar2") {
-            b1 = false;
-            b2 = true; 
             continue;
         }
 
         string decodedID = decodeFunc(line);
-        
-
-    //DISCARD
-        // if (b1)
-        // {
-        //     //insert to LL
-        //     cout << "b1 " << decodedID << endl;
-        // }
-        // else if (b2)
-        // {
-        //     //insert to LL
-        //     cout << "b2 " << decodedID << endl;
-        // }
-
-
-
+        tempVector.push_back(decodedID);
 
     }
-
-
-
-
     inFS.close();
 
 
+    sort(tempVector.begin(), tempVector.end());
+    for(auto x : tempVector)
+        myList.append(x);
 
-
+    myList.print();
 
     
     return 0;
